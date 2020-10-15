@@ -149,6 +149,7 @@ julia> cumsum(x^2 for x in 1:3)
 """
 cumsum(x::AbstractVector) = cumsum(x, dims=1)
 cumsum(itr) = accumulate(add_sum, itr)
+cumsum(f::Function, itrs...) = Base.Generator(f, itrs...) |> cumsum
 
 
 """
